@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
 import Product from '../product/Product';
 import './Shop.css';
 
 const Shop = () => {
-    const [products, setproducts] = useState([])
-    const [card, setcard] = useState([])
+    const [products, setProducts] = useState([])
+    const [card, setCard] = useState([])
     useEffect(() => {
         fetch('products.json')
             .then(res => res.json())
-            .then(data => setproducts(data))
+            .then(data => setProducts(data))
     }, [])
     const HandelAddToCard = (product) => {
-        const newcard = [...card, product];
-        setcard(newcard)
+        const newCard = [...card, product];
+        setCard(newCard)
 
     }
     return (
@@ -30,9 +31,9 @@ const Shop = () => {
                 }
 
             </div>
-            <div className="cart-container">
-                <h5>order summary <summary></summary></h5>
-                <p>total added:{card.length}</p>
+            <div className="cart-container" >
+                <Cart card={card}></Cart>
+
             </div>
 
         </div>
